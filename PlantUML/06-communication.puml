@@ -1,0 +1,19 @@
+@startuml
+title Кол-центр — діаграма комунікації
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam defaultFontColor #132D43
+skinparam ArrowColor #46647A
+skinparam rectangleBorderColor #275173
+skinparam rectangleBackgroundColor #E9F4FA
+skinparam shadowing false
+skinparam ranksep 55
+skinparam dpi 150
+
+rectangle "клієнт : Клієнт" as Caller
+rectangle "оператор : Оператор" as Agent
+rectangle "реєстр : Система звернень" as Register
+
+Caller -right- Agent : → 1: описатиПроблему(опис)\n← 2: повідомитиНомер(номер)
+Agent -down- Register : ↓ 1.1: створитиЗвернення(опис)\n↑ 1.2: повернутиНомер(номер)
+@enduml

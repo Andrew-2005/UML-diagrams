@@ -1,0 +1,48 @@
+@startuml
+title Перевірка електронної пошти — діаграма послідовності
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam defaultFontColor #132D43
+skinparam sequenceArrowColor #355971
+skinparam sequenceParticipantBorderColor #275173
+skinparam sequenceParticipantBackgroundColor #DDEEF8
+skinparam sequenceLifeLineBorderColor #66859A
+skinparam sequenceGroupBorderColor #66859A
+skinparam sequenceGroupHeaderBackgroundColor #E9F4FA
+skinparam shadowing false
+skinparam dpi 150
+hide footbox
+
+participant "Поштовий клієнт\n(комп’ютер)" as Client
+participant "Поштовий сервер" as Server
+
+opt є вихідна чернетка
+    Client -> Server : Зберегти чернетку(лист)
+    Server --> Client : Ідентифікатор чернетки
+    alt користувач надіслав лист
+        Client -> Server : Надіслати лист(ідентифікатор)
+        Server --> Client : Підтвердження надсилання
+    else користувач скасував надсилання
+        Client -> Server : Скасувати надсилання(ідентифікатор)
+        Server --> Client : Підтвердження скасування
+    end
+end
+
+Client -> Server : Перевірити вхідні листи()
+alt є новий лист
+    Server --> Client : Новий лист(ідентифікатор, тема)
+    Client -> Server : Запросити вивантаження листа(ідентифікатор)
+    Server --> Client : Вивантажити лист на комп’ютер(вміст)
+    opt користувач відповідає
+        Client -> Server : Надіслати відповідь(ідентифікатор, текст)
+        Server --> Client : Підтвердження надсилання відповіді
+    end
+else нових листів немає
+    Server --> Client : Список нових листів порожній
+end
+
+opt користувач очищує пошту
+    Client -> Server : Видалити старі листи(гранична дата)
+    Server --> Client : Кількість видалених листів
+end
+@enduml

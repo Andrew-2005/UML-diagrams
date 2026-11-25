@@ -1,0 +1,27 @@
+@startuml
+title Агрегатні стани води — діаграма станів
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam defaultFontColor #132D43
+skinparam ArrowColor #46647A
+skinparam stateBorderColor #275173
+skinparam stateBackgroundColor #E9F4FA
+skinparam stateStartColor #173E5B
+skinparam shadowing false
+skinparam ranksep 90
+skinparam nodesep 75
+skinparam dpi 150
+hide empty description
+
+state "Лід" as Ice
+state "Рідка вода" as Water
+state "Водяна пара" as Vapor
+
+[*] -right-> Ice
+Ice -right-> Water : плавлення
+Water -left-> Ice : замерзання
+Water -right-> Vapor : пароутворення
+Vapor -left-> Water : конденсація
+Ice --> Vapor : сублімація
+Vapor --> Ice : десублімація
+@enduml

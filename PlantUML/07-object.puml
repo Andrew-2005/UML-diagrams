@@ -1,0 +1,39 @@
+@startuml
+title Природний добір у в’юрків — діаграма об’єктів
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam defaultFontColor #132D43
+skinparam ArrowColor #46647A
+skinparam objectBorderColor #275173
+skinparam objectBackgroundColor #E9F4FA
+skinparam noteBackgroundColor #FFF6DB
+skinparam noteBorderColor #9D7E37
+skinparam shadowing false
+skinparam ranksep 55
+skinparam nodesep 48
+skinparam dpi 150
+
+object "__посуха : Умови середовища__" as Drought {
+    дрібне м’яке насіння = мало
+    доступний корм = переважно тверде насіння
+}
+
+object "__батьківське : Покоління в’юрків__" as Parents {
+    період = до та під час посухи
+    глибина дзьоба = різна в різних особин
+    виживання = вище в особин із глибшим дзьобом
+}
+
+object "__дочірнє : Покоління в’юрків__" as Offspring {
+    походження = нащадки особин, що вижили
+    середня глибина дзьоба = вища, ніж до посухи
+}
+
+Drought -- Parents : умови добору
+Parents -- Offspring : зв’язок поколінь
+
+note right of Offspring
+    Глибина дзьоба —
+    спадкова ознака.
+end note
+@enduml

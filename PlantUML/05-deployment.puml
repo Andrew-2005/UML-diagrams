@@ -1,0 +1,37 @@
+@startuml
+title Бібліотечна система — діаграма розгортання
+left to right direction
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam defaultFontColor #132D43
+skinparam ArrowColor #46647A
+skinparam nodeBorderColor #275173
+skinparam nodeBackgroundColor #F2F8FC
+skinparam artifactBorderColor #275173
+skinparam artifactBackgroundColor #DDEEF8
+skinparam shadowing false
+skinparam nodesep 46
+skinparam ranksep 62
+skinparam dpi 150
+
+node "Клієнт\n(локальний комп’ютер)" as Client <<device>> {
+    node "Веббраузер" as Browser <<executionEnvironment>> {
+        artifact "Вебінтерфейс\nбібліотеки" as WebClient
+    }
+}
+
+node "Сервер застосунку" as Server <<device>> {
+    node "Вебсервер" as WebServer <<executionEnvironment>> {
+        artifact "Серверний\nзастосунок" as Backend
+    }
+}
+
+node "Сервер бази даних" as DataServer <<device>> {
+    node "Система керування БД" as DBMS <<executionEnvironment>> {
+        artifact "База даних\nбібліотеки" as LibraryDB
+    }
+}
+
+Client -- Server : HTTPS
+Server -- DataServer : SQL через TLS
+@enduml

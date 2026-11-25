@@ -1,0 +1,32 @@
+@startuml
+title Бібліотека — діаграма варіантів використання
+left to right direction
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam defaultFontColor #132D43
+skinparam ArrowColor #46647A
+skinparam actorBorderColor #275173
+skinparam actorBackgroundColor #E9F4FA
+skinparam usecaseBorderColor #275173
+skinparam usecaseBackgroundColor #E9F4FA
+skinparam rectangleBorderColor #66859A
+skinparam shadowing false
+skinparam dpi 150
+
+actor "Бібліотекар" as Librarian
+actor "Користувач\nбібліотеки" as Reader
+
+rectangle "Бібліотечна система" {
+    usecase "Додати нову книжку" as AddBook
+    usecase "Запитати про наявність\nкнижки" as CheckAvailability
+    usecase "Зареєструвати отримання\nкнижки" as RegisterLoan
+    usecase "Зареєструвати повернення\nкнижки" as RegisterReturn
+}
+
+Librarian -- AddBook
+Librarian -- RegisterLoan
+Librarian -- RegisterReturn
+CheckAvailability -- Reader
+RegisterLoan -- Reader
+RegisterReturn -- Reader
+@enduml

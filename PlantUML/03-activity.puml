@@ -1,0 +1,34 @@
+@startuml
+title Робота з гостем готелю — діаграма діяльності
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam defaultFontColor #132D43
+skinparam ArrowColor #46647A
+skinparam activityBorderColor #275173
+skinparam activityBackgroundColor #E9F4FA
+skinparam activityStartColor #173E5B
+skinparam activityEndColor #173E5B
+skinparam swimlaneBorderColor #66859A
+skinparam swimlaneTitleBackgroundColor #DDEEF8
+skinparam shadowing false
+skinparam dpi 150
+
+|Менеджер готельного комплексу|
+start
+:Подати запит на бронювання;
+|База даних|
+:Створити бронювання;
+|Менеджер готельного комплексу|
+:Отримати підтвердження\nбронювання;
+:Подати запит на заселення;
+|База даних|
+:Зареєструвати заселення;
+|Менеджер готельного комплексу|
+:Отримати підтвердження\nзаселення;
+:Подати запит на виселення;
+|База даних|
+:Зареєструвати виселення;
+|Менеджер готельного комплексу|
+:Отримати підтвердження\nвиселення;
+stop
+@enduml

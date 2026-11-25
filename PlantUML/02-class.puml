@@ -1,0 +1,46 @@
+@startuml
+title Навчальний процес — діаграма класів
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam defaultFontColor #132D43
+skinparam ArrowColor #46647A
+skinparam classBorderColor #275173
+skinparam classBackgroundColor #F2F8FC
+skinparam classHeaderBackgroundColor #DDEEF8
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 96
+skinparam ranksep 60
+skinparam dpi 150
+hide circle
+hide empty methods
+
+class "Студент" as Student {
+    - номерКвитка : Рядок
+    - повнеІм’я : Рядок
+}
+
+class "Викладач" as Teacher {
+    - табельнийНомер : Рядок
+    - повнеІм’я : Рядок
+}
+
+class "Дисципліна" as Course {
+    - код : Рядок
+    - назва : Рядок
+    - кредитиЄКТС : Ціле
+}
+
+class "Проходження дисципліни" as Enrollment {
+    - семестр : Рядок
+    - датаЗапису : Дата
+    - оцінка : Ціле [0..1]
+    --
+    + виставитиОцінку(бал : Ціле)
+}
+
+Student "1" -right- "0..*" Enrollment : записи студента
+Enrollment "0..*" -down- "1" Course : обрана дисципліна
+Teacher "1" -right- "0..*" Course : викладання
+Student -[hidden]down- Teacher
+@enduml
